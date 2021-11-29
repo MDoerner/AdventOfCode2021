@@ -21,3 +21,8 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Build engine stuff
+/Kotlin/AdventOfCode_2021/.gradle/*
+/Kotlin/AdventOfCode_2021/build/*
+
