@@ -1,6 +1,6 @@
 package daySolutions
 
-class Day0:Day<String>{
+class Day0: Day<String,String> {
     override fun parseInput(input: String): String {
         return input
     }
