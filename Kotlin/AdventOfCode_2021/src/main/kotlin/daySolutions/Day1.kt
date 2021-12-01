@@ -19,6 +19,6 @@ class Day1:Day<List<Int>,Int> {
     override fun solvePart2(input: List<Int>): Int = IncreaseCount(WindowAverages(input, 3))
 
     private fun WindowAverages(values: List<Int>, windowSize: Int): List<Double>{
-        return values.windowed(windowSize).map { it.average() }
+        return values.windowed(windowSize) { it.average() }
     }
 }

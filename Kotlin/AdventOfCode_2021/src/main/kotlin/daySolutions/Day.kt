@@ -5,7 +5,7 @@ interface DaySolver{
     fun solutionForPart2(input: String): String
 }
 
-interface Day<T, R>:DaySolver{
+interface Day<T, out R>:DaySolver{
     fun parseInput(input: String): T
     fun solvePart1(input: T): R
     fun solvePart2(input: T): R
