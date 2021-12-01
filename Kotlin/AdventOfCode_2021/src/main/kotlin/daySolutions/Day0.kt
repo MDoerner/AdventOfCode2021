@@ -1,5 +1,6 @@
 package daySolutions
 
+@Suppress("unused")
 class Day0: Day<String,String> {
     override fun parseInput(input: String): String {
         return input

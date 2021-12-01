@@ -7,31 +7,36 @@ import kotlin.test.assertEquals
 
 abstract class DayTestBase {
 
-    abstract fun DaySolverUnderTest(): DaySolver
+    abstract fun daySolverUnderTest(): DaySolver
 
-    internal fun TestOnDayInput(day: Int, part: Int, expectedResult: String){
-        val input = TestInputFromFile(day) ?: fail("Input does not exist!!!")
-        TestExampleInput(part, input, expectedResult)
+    internal fun testOnDayInput(day: Int, part: Int, expectedResult: String){
+        val input = testInputFromFile(day) ?: fail("Input does not exist!!!")
+        testExampleInput(part, input, expectedResult)
     }
 
-    internal fun TestExampleInput(part: Int, exampleInput: String, expectedResult: String){
-        val solver = DaySolverUnderTest()
+    internal fun testExampleInput(part: Int, exampleInput: String, expectedResult: String){
+        val solver = daySolverUnderTest()
         val actualResult = when(part){
             1 -> solver.solutionForPart1(exampleInput)
             2 -> solver.solutionForPart2(exampleInput)
             else -> null
-        } ?: fail("Unsupported part: ${part}")
+        } ?: fail("Unsupported part: $part")
         assertEquals(expectedResult, actualResult)
     }
 
-    private fun TestInputFromFile(day: Int): String?{
+    private fun testInputFromFile(day: Int): String?{
         val path = inputFilePath(day) ?: return null
         return problemInput(path)
     }
 
     private fun problemInput(inputPath: String): String?{
-        val reader = File(inputPath).bufferedReader()
-        return reader.use { it.readText() }
+        return try{
+            val reader = File(inputPath).bufferedReader()
+            reader.use { it.readText() }
+        }
+        catch (e: Exception){
+            null
+        }
     }
 
     private fun inputFilePath(day: Int):String?{

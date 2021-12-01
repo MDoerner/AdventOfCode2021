@@ -8,13 +8,13 @@ fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
     val (day, part) = parseArguments(args) ?: return
-    println("Problem specification: day ${day}, part ${part}")
+    println("Problem specification: day ${day}, part $part")
 
     val solver = problemSolver(day) ?: return
-    println("Problem solver: ${solver}")
+    println("Problem solver: $solver")
 
-    val inputPath = inputFilePath(day) ?: return;
-    println("Input file: ${inputPath}")
+    val inputPath = inputFilePath(day) ?: return
+    println("Input file: $inputPath")
 
     val input = problemInput(inputPath) ?: return
 
@@ -35,8 +35,13 @@ private fun parseArguments(args: Array<String>): Pair<Int, Int>?{
 }
 
 private fun problemInput(inputPath: String): String?{
-    val reader = File(inputPath).bufferedReader()
-    return reader.use { it.readText() }
+    return try{
+        val reader = File(inputPath).bufferedReader()
+        reader.use { it.readText() }
+    }
+    catch (e: Exception){
+        null
+    }
 }
 
 private fun inputFilePath(day: Int):String?{

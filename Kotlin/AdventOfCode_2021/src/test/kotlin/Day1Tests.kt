@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test
 
 class Day1Tests: DayTestBase() {
 
-    override fun DaySolverUnderTest(): DaySolver {
+    override fun daySolverUnderTest(): DaySolver {
         return daySolutions.Day1()
     }
 
@@ -30,28 +30,28 @@ class Day1Tests: DayTestBase() {
         "792\n"
 
     @Test
-    internal fun Part1Example() {
+    internal fun part1Example() {
         val input = part1ExampleInput
         val expectedResult = 7.toString()
-        TestExampleInput(1, input, expectedResult)
+        testExampleInput(1, input, expectedResult)
     }
 
     @Test
-    internal fun Part1Solution() {
+    internal fun part1Solution() {
         val expectedResult = 1502.toString()
-        TestOnDayInput(1, 1, expectedResult)
+        testOnDayInput(1, 1, expectedResult)
     }
 
     @Test
-    internal fun Part2Example() {
+    internal fun part2Example() {
         val input = part2ExampleInput
         val expectedResult = 5.toString()
-        TestExampleInput(2, input, expectedResult)
+        testExampleInput(2, input, expectedResult)
     }
 
     @Test
-    internal fun Part2Solution() {
+    internal fun part2Solution() {
         val expectedResult = 1538.toString()
-        TestOnDayInput(1, 2, expectedResult)
+        testOnDayInput(1, 2, expectedResult)
     }
 }
