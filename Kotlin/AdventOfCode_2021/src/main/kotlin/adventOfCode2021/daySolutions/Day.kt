@@ -1,11 +1,11 @@
-package daySolutions
+package adventOfCode2021.daySolutions
 
 interface DaySolver{
     fun solutionForPart1(input: String): String
     fun solutionForPart2(input: String): String
 }
 
-interface Day<T, out R>:DaySolver{
+interface Day<T, out R>: DaySolver {
     fun parseInput(input: String): T
     fun solvePart1(input: T): R
     fun solvePart2(input: T): R

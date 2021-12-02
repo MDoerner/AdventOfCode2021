@@ -1,8 +1,8 @@
-import daySolutions.DaySolver
+import adventOfCode2021.daySolutions.DaySolver
+import adventOfCode2021.utility.tryToInt
 import java.io.File
 import java.nio.file.InvalidPathException
 import java.nio.file.Paths
-import kotlin.NumberFormatException
 
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
@@ -25,10 +25,10 @@ fun main(args: Array<String>) {
 private fun parseArguments(args: Array<String>): Pair<Int, Int>?{
     if (args.count() < 2) return null
 
-    val day = try {args[0].toInt()} catch(e:NumberFormatException) {null}
+    val day = args[0].tryToInt()
     if (day == null || day < 0 || day > 25) return null
 
-    val part = try {args[1].toInt()} catch(e:NumberFormatException) {null}
+    val part = args[1].tryToInt()
     if (part == null || part < 1 || part > 2) return null
 
     return day to part
@@ -55,7 +55,7 @@ private fun inputFilePath(day: Int):String?{
 
 private fun problemSolver(day: Int): DaySolver?{
     val solver = try {
-        Class.forName("daySolutions.Day${day}").constructors.single().newInstance()
+        Class.forName("adventOfCode2021.daySolutions.Day${day}").constructors.single().newInstance()
     }catch (e : Exception)
     {
         null

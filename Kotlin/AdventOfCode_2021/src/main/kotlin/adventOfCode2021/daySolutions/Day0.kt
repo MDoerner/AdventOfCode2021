@@ -1,7 +1,7 @@
-package daySolutions
+package adventOfCode2021.daySolutions
 
 @Suppress("unused")
-class Day0: Day<String,String> {
+class Day0: Day<String, String> {
     override fun parseInput(input: String): String {
         return input
     }

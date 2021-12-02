@@ -1,4 +1,4 @@
-import daySolutions.DaySolver
+import adventOfCode2021.daySolutions.DaySolver
 import java.io.File
 import java.nio.file.InvalidPathException
 import java.nio.file.Paths

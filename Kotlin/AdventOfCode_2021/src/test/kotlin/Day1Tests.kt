@@ -1,10 +1,11 @@
-import daySolutions.DaySolver
+import adventOfCode2021.daySolutions.Day1
+import adventOfCode2021.daySolutions.DaySolver
 import org.junit.jupiter.api.Test
 
 class Day1Tests: DayTestBase() {
 
     override fun daySolverUnderTest(): DaySolver {
-        return daySolutions.Day1()
+        return Day1()
     }
 
     private val part1ExampleInput =
