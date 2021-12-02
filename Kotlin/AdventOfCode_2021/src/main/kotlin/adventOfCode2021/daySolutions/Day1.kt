@@ -1,10 +1,8 @@
 package adventOfCode2021.daySolutions
 
-import adventOfCode2021.utility.tryToInt
-
 class Day1: Day<List<Int>, Int> {
     override fun parseInput(input: String): List<Int> {
-        return input.lines().mapNotNull(String::tryToInt)
+        return input.lines().mapNotNull(String::toIntOrNull)
     }
 
     override fun solvePart1(input: List<Int>): Int = increaseCount(input)

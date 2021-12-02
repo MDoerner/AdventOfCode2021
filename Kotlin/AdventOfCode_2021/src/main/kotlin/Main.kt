@@ -1,5 +1,4 @@
 import adventOfCode2021.daySolutions.DaySolver
-import adventOfCode2021.utility.tryToInt
 import java.io.File
 import java.nio.file.InvalidPathException
 import java.nio.file.Paths
@@ -25,10 +24,10 @@ fun main(args: Array<String>) {
 private fun parseArguments(args: Array<String>): Pair<Int, Int>?{
     if (args.count() < 2) return null
 
-    val day = args[0].tryToInt()
+    val day = args[0].toIntOrNull()
     if (day == null || day < 0 || day > 25) return null
 
-    val part = args[1].tryToInt()
+    val part = args[1].toIntOrNull()
     if (part == null || part < 1 || part > 2) return null
 
     return day to part

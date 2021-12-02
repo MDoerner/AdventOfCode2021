@@ -16,7 +16,7 @@ class Day2: Day<List<MovementInstruction>, Int> {
 
     private fun parseInstruction(instruction: String): MovementInstruction?{
         val matchedGroups = instructionRegex.matchEntire(instruction)?.groupValues ?: return null
-        val magnitude = matchedGroups[3].tryToInt() ?: return null
+        val magnitude = matchedGroups[3].toIntOrNull() ?: return null
         val direction = when(matchedGroups[1]){
             "forward" -> Direction2d.RIGHT
             "up" -> Direction2d.UP
