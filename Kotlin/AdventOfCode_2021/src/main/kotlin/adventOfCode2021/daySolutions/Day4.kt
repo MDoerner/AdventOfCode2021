@@ -83,9 +83,9 @@ class Day4 : Day<Pair<List<Int>, List<BingoBoard>>, Int> {
     }
 
     private fun winState(board: BingoBoard, numbers: List<Int>): Triple<Int, Int, Pair<BingoBoard,BingoBoardState>>?{
-        val (lastDrawnNumber, boarsWithState) = playBingo(numbers, listOf(board)) ?: return null
+        val (lastDrawnNumber, boardsWithState) = playBingo(numbers, listOf(board)) ?: return null
         val winningRound = numbers.indexOf(lastDrawnNumber) + 1
-        return Triple(winningRound, lastDrawnNumber, boarsWithState)
+        return Triple(winningRound, lastDrawnNumber, boardsWithState)
     }
 
 }
@@ -94,7 +94,7 @@ private class BingoBoardState(val boardWidth: Int){
 
     private val columnMarkedCounts = MutableList(boardWidth) { 0 }
     private val rowMarkedCounts = MutableList(boardWidth) { 0 }
-    private val markedNumbersImpl = HashSet<Int>()
+    private val markedNumbersImpl = mutableSetOf<Int>()
 
     val markedNumbers: Set<Int> = markedNumbersImpl
 
@@ -105,8 +105,8 @@ private class BingoBoardState(val boardWidth: Int){
      */
     fun markNumber(row: Int, column: Int, value: Int): Boolean{
         markedNumbersImpl.add(value)
-        columnMarkedCounts[column] += 1
-        rowMarkedCounts[row] += 1
+        columnMarkedCounts[column]++
+        rowMarkedCounts[row]++
         return columnMarkedCounts[column] == boardWidth || rowMarkedCounts[row] == boardWidth
     }
 }
