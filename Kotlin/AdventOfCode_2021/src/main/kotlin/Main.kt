@@ -2,7 +2,10 @@ import adventOfCode2021.daySolutions.DaySolver
 import java.io.File
 import java.nio.file.InvalidPathException
 import java.nio.file.Paths
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTimedValue
 
+@OptIn(ExperimentalTime::class)
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
@@ -17,7 +20,10 @@ fun main(args: Array<String>) {
 
     val input = problemInput(inputPath) ?: return
 
-    val solution = if (part == 1) solver.solutionForPart1(input) else solver.solutionForPart2(input)
+    val (solution, elapsedTime) = measureTimedValue {
+        if (part == 1) solver.solutionForPart1(input) else solver.solutionForPart2(input)
+    }
+    println("Elapsed Time: ${elapsedTime}")
     println("Solution:\n${solution}")
 }
 
