@@ -15,3 +15,14 @@ fun Direction2d.toPoint(): Point2d{
         Direction2d.RIGHT -> Point2d(1, 0)
     }
 }
+
+private val gridNeighbourOffsets = setOf(
+    Point2d(-1, 0),
+    Point2d(1, 0),
+    Point2d(0, -1),
+    Point2d(0, 1)
+)
+
+fun Point2d.girdNeighbours(): Set<Point2d>{
+    return gridNeighbourOffsets.map { it + this }.toSet()
+}
