@@ -6,7 +6,7 @@ import adventOfCode2021.utility.girdNeighbours
 
 typealias HeightMap = List<List<Int>>
 
-operator fun HeightMap.get(point: Point2d): Int = this[point.y][point.x]
+private operator fun HeightMap.get(point: Point2d): Int = this[point.y][point.x]
 
 fun HeightMap.getOrNull(point: Point2d): Int? = this.getOrNull(point.y)?.getOrNull(point.x)
 

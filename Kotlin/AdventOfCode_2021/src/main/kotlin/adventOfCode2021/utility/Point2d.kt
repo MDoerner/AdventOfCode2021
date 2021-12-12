@@ -26,3 +26,18 @@ private val gridNeighbourOffsets = setOf(
 fun Point2d.girdNeighbours(): Set<Point2d>{
     return gridNeighbourOffsets.map { it + this }.toSet()
 }
+
+private val fullGridNeighbourOffsets = setOf(
+    Point2d(1, 0),
+    Point2d(1, 1),
+    Point2d(0, 1),
+    Point2d(-1, 1),
+    Point2d(-1, 0),
+    Point2d(-1, -1),
+    Point2d(0, -1),
+    Point2d(1, -1),
+)
+
+fun Point2d.fullGirdNeighbours(): Set<Point2d>{
+    return fullGridNeighbourOffsets.map { it + this }.toSet()
+}
