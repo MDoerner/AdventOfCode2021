@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
     val (solution, elapsedTime) = measureTimedValue {
         if (part == 1) solver.solutionForPart1(input) else solver.solutionForPart2(input)
     }
-    println("Elapsed Time: ${elapsedTime}")
+    println("Elapsed Time: $elapsedTime")
     println("Solution:\n${solution}")
 }
 
