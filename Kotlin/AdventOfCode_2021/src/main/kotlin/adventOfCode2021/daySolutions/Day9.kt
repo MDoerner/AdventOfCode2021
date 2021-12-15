@@ -8,7 +8,7 @@ typealias HeightMap = List<List<Int>>
 
 private operator fun HeightMap.get(point: Point2d): Int = this[point.y][point.x]
 
-fun HeightMap.getOrNull(point: Point2d): Int? = this.getOrNull(point.y)?.getOrNull(point.x)
+private fun HeightMap.getOrNull(point: Point2d): Int? = this.getOrNull(point.y)?.getOrNull(point.x)
 
 private const val MAX_HEIGHT: Int = 9
 
