@@ -3,9 +3,6 @@ package adventOfCode2021.daySolutions
 import kotlin.math.max
 
 
-//CAUTION: This is a mess because I tried to optimize the performance by doing the reduction in place.
-//         Because of this, the addition mutates its operands!!!!
-
 interface SnailFishNumber{
     fun magnitude(): ULong
     fun reduce(): SnailFishNumber
@@ -71,13 +68,9 @@ class Day18 : Day<List<SnailFishNumber>, ULong> {
     }
 
     override fun solvePart2(input: List<SnailFishNumber>): ULong {
-        val combinations = input.flatMap { first -> input.map { second -> copy(first) to copy(second) } }
-            .filter { (first, second) -> first.toString() != second.toString()}
+        val combinations = input.flatMap { first -> input.map { second -> first to second } }
+            .filter { (first, second) -> first != second}
         return combinations.maxOf { (first, second) -> (first + second).magnitude() }
-    }
-
-    private fun copy(number: SnailFishNumber): SnailFishNumber{
-        return parseSnailFishNumber(number.toString()) ?: throw NotImplementedError("This cannot happen.")
     }
 }
 
@@ -118,9 +111,10 @@ private abstract class SnailFishNumberBase(var parent: PairSnailFishNumber?): Sn
         return this + other
     }
 
-    //CAUTION: This implementation consumes the summands. They will be altered in the reduction step!!!!!!!!!!
+    abstract fun copy(): SnailFishNumberBase
+
     operator fun plus(other: SnailFishNumberBase): SnailFishNumberBase {
-        val result = PairSnailFishNumber(this, other)
+        val result = PairSnailFishNumber(this.copy(), other.copy())
         return result.reduceBase()
     }
 }
@@ -141,12 +135,14 @@ private class SimpleSnailFishNumber(val value: ULong):SnailFishNumberBase(null){
         val leftNumber = SimpleSnailFishNumber(leftValue)
         val rightNumber = SimpleSnailFishNumber(rightValue)
         //Note that we cannot add the two numbers because that could theoretically trigger a further split when reducing.
-        //However, the ew pair might need to be exploded first, depending on where the aplit pair is in the whole number.
+        //However, the ew pair might need to be exploded first, depending on where the split pair is in the whole number.
         return PairSnailFishNumber(leftNumber, rightNumber)
     }
 
     override fun rightMostValue(): SimpleSnailFishNumber = this
     override fun leftMostValue(): SimpleSnailFishNumber = this
+
+    override fun copy(): SnailFishNumberBase = SimpleSnailFishNumber(value)
 
     override fun magnitude(): ULong {
         return value
@@ -232,6 +228,8 @@ private class PairSnailFishNumber(var left: SnailFishNumberBase, var right: Snai
     override fun leftMostValue(): SimpleSnailFishNumber {
         return left.leftMostValue()
     }
+
+    override fun copy(): SnailFishNumberBase = PairSnailFishNumber(left.copy(), right.copy())
 
     private fun explodeRight(number: PairSnailFishNumber){
         val rightNeighbour = number.rightNeighbour()
