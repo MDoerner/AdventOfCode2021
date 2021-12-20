@@ -41,3 +41,19 @@ private val fullGridNeighbourOffsets = setOf(
 fun Point2d.fullGirdNeighbours(): Set<Point2d>{
     return fullGridNeighbourOffsets.map { it + this }.toSet()
 }
+
+private val surroundingGridSquareOffsets = listOf(
+    Point2d(-1, -1),
+    Point2d(0, -1),
+    Point2d(1, -1),
+    Point2d(-1, 0),
+    Point2d(0, 0),
+    Point2d(1, 0),
+    Point2d(-1, 1),
+    Point2d(0, 1),
+    Point2d(1, 1),
+)
+
+fun Point2d.surroundingGridSquare(): List<Point2d>{
+    return surroundingGridSquareOffsets.map { it + this }
+}
