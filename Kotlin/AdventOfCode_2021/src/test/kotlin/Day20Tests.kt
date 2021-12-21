@@ -38,9 +38,9 @@ class Day20Tests: DayTestBase() {
         testExampleInput(2, input, expectedResult)
     }
 
-//    @Test
-//    internal fun part2Solution() {
-//        val expectedResult = 4676.toString()
-//        testOnDayInput(20, 2, expectedResult)
-//    }
+    @Test
+    internal fun part2Solution() {
+        val expectedResult = 15287.toString()
+        testOnDayInput(20, 2, expectedResult)
+    }
 }
