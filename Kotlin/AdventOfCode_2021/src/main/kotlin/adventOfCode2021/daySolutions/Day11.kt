@@ -68,8 +68,11 @@ private fun JellyMap.resetFlashed(){
 class Day11 : Day<JellyMap, Int> {
     override fun parseInput(input: String): JellyMap {
         return input
-                .lines()
-            .map { it.mapNotNull({ it.digitToIntOrNull() }).toMutableList()}
+            .lines()
+            .map { line -> line
+                .mapNotNull { c -> c.digitToIntOrNull() }
+                .toMutableList()
+            }
             .filter(MutableList<Int>::isNotEmpty)
             .toMutableList()
     }

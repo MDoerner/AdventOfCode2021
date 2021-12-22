@@ -30,8 +30,8 @@ class Day15 : Day<RiskMap, Int> {
     override fun parseInput(input: String): RiskMap {
         return input
             .lines()
-            .mapNotNull { it.mapNotNull { it.digitToIntOrNull() } }
-            .filter { !it.isEmpty() }
+            .map { line -> line.mapNotNull { c -> c.digitToIntOrNull() } }
+            .filter { it.isNotEmpty() }
     }
 
     override fun solvePart1(input: RiskMap): Int {

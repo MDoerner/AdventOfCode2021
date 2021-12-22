@@ -74,7 +74,7 @@ class Day22: Day<List<ReactorCubeSpec>, ULong> {
     }
 
     private fun applySpec(spec: ReactorCubeSpec, reactorState: Set<IntCube>): Set<IntCube>{
-        var newReactorState = reactorState
+        val newReactorState = reactorState
             .flatMap { it.remove(spec.cube) }
             .toMutableSet()
         if (spec.shouldBeOn){

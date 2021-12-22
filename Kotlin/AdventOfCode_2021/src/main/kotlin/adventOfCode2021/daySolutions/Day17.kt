@@ -82,8 +82,6 @@ class Day17 : Day<Pair<IntRange, IntRange>, Int> {
         return (minHittingStep..maxHittingStep).toList()
     }
 
-    private fun minXVelocity(targetXRange: IntRange): Int = minXVelocityToHitAtTerminalX(targetXRange)
-
     private fun minXVelocityToHitAtTerminalX(targetXRange: IntRange): Int{
         //The terminal x position for initial velocity x0 is x0*(x0+1)/2, leading to the below bound.
         return ceil(sqrt(2*targetXRange.first + 0.25) - 0.5).toInt()
@@ -92,12 +90,6 @@ class Day17 : Day<Pair<IntRange, IntRange>, Int> {
     private fun maxXVelocityToHitAtTerminalX(targetXRange: IntRange): Int{
         //The terminal x position for initial velocity x0 is x0*(x0+1)/2, leading to the below bound.
         return floor(sqrt(2*targetXRange.last + 0.25) - 0.5).toInt()
-    }
-
-    private fun maxXVelocity(targetXRange: IntRange): Int {
-        //If we already shoot right so fast that we land to the right of the target after the first step, we miss it.
-        //Moreover, it is always possible to simply shoot into the target after the first step.
-        return targetXRange.last
     }
 
     private fun xVelocitiesHittingInStep(targetXRange: IntRange, step: Int, xVelocitiesHittingAtTerminalX: IntRange): List<Int>{

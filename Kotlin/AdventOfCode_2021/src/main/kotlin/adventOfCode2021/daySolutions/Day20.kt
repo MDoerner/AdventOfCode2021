@@ -35,7 +35,7 @@ class Day20: Day<ScannerDate, Int> {
 
     override fun solvePart1(input: ScannerDate): Int {
         val image = input.image.toMutableMap()
-        val _finalBackground = executeSteps(image, input.algorithm, input.background, 2)
+        executeSteps(image, input.algorithm, input.background, 2)
         return image
             .filterValues { it == 1 }
             .count()
@@ -88,7 +88,7 @@ class Day20: Day<ScannerDate, Int> {
 
     override fun solvePart2(input: ScannerDate): Int {
         val image = input.image.toMutableMap()
-        val _finalBackground = executeSteps(image, input.algorithm, input.background, 50)
+        executeSteps(image, input.algorithm, input.background, 50)
         return image
             .filterValues { it == 1 }
             .count()

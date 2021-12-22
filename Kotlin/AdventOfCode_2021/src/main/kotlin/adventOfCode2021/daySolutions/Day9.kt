@@ -17,8 +17,8 @@ class Day9 : Day<HeightMap, Int> {
     override fun parseInput(input: String): HeightMap {
         return input
             .lines()
-            .mapNotNull { it.mapNotNull { it.digitToIntOrNull() } }
-            .filter { !it.isEmpty() }
+            .map { line -> line.mapNotNull { c -> c.digitToIntOrNull() } }
+            .filter { it.isNotEmpty() }
     }
 
     override fun solvePart1(input: HeightMap): Int {
@@ -31,7 +31,7 @@ class Day9 : Day<HeightMap, Int> {
     private fun riskLevel(point: Point2d, heightMap: HeightMap): Int = heightMap.getOrNull(point)?.plus(1) ?: 0
 
     private fun lowPoints(heightMap: HeightMap): Set<Point2d>{
-        return heightMap.mapIndexedNotNull { y, row ->
+        return heightMap.mapIndexed { y, row ->
                 row.mapIndexedNotNull { x, height ->
                     val point = Point2d(x,y)
                     if (isLowPoint(point, height, heightMap)) point else null
@@ -72,7 +72,7 @@ class Day9 : Day<HeightMap, Int> {
     private fun borderingHeightLevel(height: Int, lake: Set<Point2d>, heightMap: HeightMap): Set<Point2d>{
         val heightLevel = mutableSetOf<Point2d>()
         var adjacentPoints = fixedHeightNeighbours(height, lake, heightMap)
-        while (!adjacentPoints.isEmpty()){
+        while (adjacentPoints.isNotEmpty()){
             heightLevel.addAll(adjacentPoints)
             adjacentPoints = fixedHeightNeighbours(height, adjacentPoints, heightMap)
                 .filter { !heightLevel.contains(it) }

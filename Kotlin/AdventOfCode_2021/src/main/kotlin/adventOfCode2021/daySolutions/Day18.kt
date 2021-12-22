@@ -105,7 +105,7 @@ private abstract class SnailFishNumberBase(var parent: PairSnailFishNumber?): Sn
     }
 
     override fun plus(other: SnailFishNumber): SnailFishNumber {
-        if (!(other is SnailFishNumberBase)){
+        if (other !is SnailFishNumberBase){
             throw NotImplementedError("The SnailFishNumber interface is only supposed to be implemented via the abstract base, which is not supposed to be publicly exposed.")
         }
         return this + other

@@ -2,7 +2,6 @@ package adventOfCode2021.daySolutions
 
 
 class Day6 : Day<List<Int>, ULong> {
-
     override fun parseInput(input: String): List<Int>{
         return input.split(',').mapNotNull(String::toIntOrNull)
     }
@@ -11,7 +10,7 @@ class Day6 : Day<List<Int>, ULong> {
         return populationAfterDays(input, 80)
     }
 
-    fun populationAfterDays(birthingDelays: List<Int>, numberOfDays: Int): ULong{
+    private fun populationAfterDays(birthingDelays: List<Int>, numberOfDays: Int): ULong{
         val initialPopulation = initialBirthingBuckets(birthingDelays)
         val adultCountByBirthingBucket = initialPopulation.first
         var freshJuvenileCount = initialPopulation.second
@@ -38,11 +37,6 @@ class Day6 : Day<List<Int>, ULong> {
             .groupBy {it % 7}
         val bucketPopulations  = (0..6).map { adultsByBucket[it]?.count()?.toULong() ?: 0UL }.toMutableList()
         return Triple(bucketPopulations, seniorJuvenileCount, freshJuvenileCount)
-    }
-
-    fun timeToGiveBirth(day: Int, birthDay: Int): Boolean{
-        return day - birthDay > 8
-                &&  (day - birthDay - 2) % 7 == 0
     }
 
     override fun solvePart2(input: List<Int>): ULong {

@@ -56,7 +56,7 @@ class Day3 : Day<List<DiagnosticNumber>, Int> {
     }
 
     private fun toInt(diagnostic: DiagnosticNumber): Int{
-        val (_exceedingBit, result) = diagnostic
+        val (_, result) = diagnostic
             .reversed()
             .fold(1 to 0) { (bitValue, value), bit -> (bitValue shl 1) to value + bit * bitValue }
         return result

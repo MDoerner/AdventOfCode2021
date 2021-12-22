@@ -60,7 +60,7 @@ class Day10 : Day<List<String>, ULong> {
             if (closingByOpening.containsKey(c)){
                 scopeOpeners.push(c)
             } else {
-                val _scopeOpener = scopeOpeners.pop()
+                scopeOpeners.pop()
             }
         }
 

@@ -126,7 +126,7 @@ private data class OperatorPacket(
     override val length: Int,
     override val typeId: Int,
     override val subPackets: List<BITSPacket>
-): BITSPacket{}
+): BITSPacket
 
 
 private fun operatorPacket(binaryMessage: BinaryMessage, version: Int, typeId: Int): OperatorPacket? {

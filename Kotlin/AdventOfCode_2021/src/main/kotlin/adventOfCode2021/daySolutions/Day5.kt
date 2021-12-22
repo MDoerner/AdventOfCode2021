@@ -10,25 +10,25 @@ data class Line2d(val startPoint: Point2d, val endPoint: Point2d){
     val isVertical: Boolean
         get() = startPoint.x == endPoint.x
 
-    val isAscendingDiagonal: Boolean
+    private val isAscendingDiagonal: Boolean
         get() = (startPoint.x - endPoint.x) == (startPoint.y - endPoint.y)
 
-    val isDescendingDiagonal: Boolean
+    private val isDescendingDiagonal: Boolean
         get() = (startPoint.x - endPoint.x) == -(startPoint.y - endPoint.y)
 
     val isDiagonal: Boolean
         get() = isAscendingDiagonal || isDescendingDiagonal
 
     fun containedPoints(): List<Point2d>{
-        return if (isVertical) IntProgressionfromEndPoints(startPoint.y, endPoint.y).map { Point2d(startPoint.x, it) }
-            else if (isHorizontal) IntProgressionfromEndPoints(startPoint.x, endPoint.x).map { Point2d(it, startPoint.y) }
-            else if (isAscendingDiagonal) IntProgressionfromEndPoints(0, endPoint.x - startPoint.x).map { startPoint + Point2d(it, it) }
-            else if (isDescendingDiagonal) IntProgressionfromEndPoints(0, endPoint.x - startPoint.x).map { startPoint + Point2d(it, -it) }
+        return if (isVertical) intProgressionFromEndPoints(startPoint.y, endPoint.y).map { Point2d(startPoint.x, it) }
+            else if (isHorizontal) intProgressionFromEndPoints(startPoint.x, endPoint.x).map { Point2d(it, startPoint.y) }
+            else if (isAscendingDiagonal) intProgressionFromEndPoints(0, endPoint.x - startPoint.x).map { startPoint + Point2d(it, it) }
+            else if (isDescendingDiagonal) intProgressionFromEndPoints(0, endPoint.x - startPoint.x).map { startPoint + Point2d(it, -it) }
             else listOf(startPoint, endPoint)
     }
 }
 
-fun IntProgressionfromEndPoints(start: Int, end: Int): IntProgression =
+fun intProgressionFromEndPoints(start: Int, end: Int): IntProgression =
     IntProgression.fromClosedRange(start, end, if (start <= end) 1 else -1)
 
 class Day5 : Day<List<Line2d>, Int> {
@@ -53,7 +53,7 @@ class Day5 : Day<List<Line2d>, Int> {
         return pointsWithAtLeastTwoGridAlignedLines.count()
     }
 
-    fun linesOnPoint(lines: List<Line2d>): Map<Point2d, List<Line2d>> = lines
+    private fun linesOnPoint(lines: List<Line2d>): Map<Point2d, List<Line2d>> = lines
         .map { line -> line.containedPoints()
                 .map {point -> point to line}
         }.flatten()

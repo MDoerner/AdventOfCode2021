@@ -15,7 +15,7 @@ class Day4 : Day<Pair<List<Int>, List<BingoBoard>>, Int> {
         val partSeparationRegEx = Regex("""\r?\n\r?\n""")
         val parts = input.split(partSeparationRegEx)
         val numbers = parseDrawnNumbers(parts[0])
-        val boards = parts.drop(1).mapNotNull(::parseBingoBoard)
+        val boards = parts.drop(1).map(::parseBingoBoard)
         return numbers to boards
     }
 
@@ -23,7 +23,7 @@ class Day4 : Day<Pair<List<Int>, List<BingoBoard>>, Int> {
         .split(',')
         .mapNotNull(String::toIntOrNull)
 
-    private fun parseBingoBoard(text: String) : BingoBoard?{
+    private fun parseBingoBoard(text: String) : BingoBoard{
         val rows = text.lines().map { it.split(' ').mapNotNull(String::toIntOrNull) }
         val width = rows[0].count()
         val numbers = rows.flatten()
@@ -32,10 +32,7 @@ class Day4 : Day<Pair<List<Int>, List<BingoBoard>>, Int> {
 
     override fun solvePart1(input: Pair<List<Int>, List<BingoBoard>>): Int {
         val (numbers, boards) = input
-        val gameResult = playBingo(numbers, boards)
-        if (gameResult == null){
-            return -1
-        }
+        val gameResult = playBingo(numbers, boards) ?: return -1
         val (lastNumber, boardAndState) = gameResult
         val (winningBoard, winningBoardState) = boardAndState
         return score(lastNumber, winningBoard, winningBoardState)
@@ -77,7 +74,7 @@ class Day4 : Day<Pair<List<Int>, List<BingoBoard>>, Int> {
         val individualBoardWinStates = boards.mapNotNull { winState(it, numbers) }
         val lastWinningRound = individualBoardWinStates.maxOf { it.first }
         val lastWinningBoardWinState = individualBoardWinStates.last { it.first == lastWinningRound }
-        val (_winningRound, lastDrawnNumber, boardAndState) = lastWinningBoardWinState
+        val (_, lastDrawnNumber, boardAndState) = lastWinningBoardWinState
         val (board, boardState) = boardAndState
         return score(lastDrawnNumber, board, boardState)
     }

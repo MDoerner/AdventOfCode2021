@@ -32,7 +32,7 @@ class Day2: Day<List<MovementInstruction>, Int> {
     }
 
     override fun solvePart2(input: List<MovementInstruction>): Int {
-        val (_finalAim, destination) = input.fold(0 to Point2d(0,0)) {
+        val (_, destination) = input.fold(0 to Point2d(0,0)) {
             (aim, location), instruction -> when(instruction.direction){
                 Direction2d.UP -> (aim + instruction.magnitude) to location
                 Direction2d.DOWN -> (aim - instruction.magnitude) to location
